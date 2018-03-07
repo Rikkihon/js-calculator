@@ -81,17 +81,25 @@
 $(document).ready(function(){
 
 // Your code here...
+    $('.number').click(function() {
+        $('#first-number').text($(this).val())
+    })
+    $('.operator').click(function() {
+        $('#operator').text($(this).val())
+        $('.number').off('click')
+        $('.number').click(function() {
+            $('#second-number').text($(this).val())
+            $(".operator").off('click')
+        })            
+   })
+})
+// now we need to get it to concatenate each number 
 
-$( ".number" ).on(click(function() {
-    //append the value to the h1 with the id 
-    $('#first-number').text(($(this).attr("value")));
-    console.log();
-   });
    $( ".number" ).on(click(function() {
     //append the value to the h1 with the id 
     $('#second-number').text(($(this).attr("value")));
     console.log();
-   });
+   }));
 
     $( ".operator" ).click(function() {
     
@@ -106,6 +114,9 @@ $( ".number" ).on(click(function() {
     $('#result').text(($(this).attr("value")));
     console.log();
    });
+   //we need to clear this out 
+   //we also want it to restart 
+
 //    $( ".clear" ).click(function() {
 //     // alert( "Handler for .click() called." );
 //     //append the value to the h1 with the id 
@@ -113,8 +124,21 @@ $( ".number" ).on(click(function() {
 //     console.log();
 //    });
 
-  
-  });
+//https://codereview.stackexchange.com/questions/38947/basic-calculator-in-jquery
+equals.on('click', function() {
+    var firstInput = parseFloat(input.attr('name'));
+    var secondInput = parseFloat(input.val());
+    if (equals.hasClass('add')) {
+        input.val(firstInput + secondInput);
+    } else if (equals.hasClass('subtract')) {
+        input.val(firstInput - secondInput);
+    } else if (equals.hasClass('multiply')) {
+        input.val(firstInput * secondInput);
+    } else if (equals.hasClass('divide')) {
+        input.val(firstInput / secondInput);
+    }
+});
+
 
 
 </script>
