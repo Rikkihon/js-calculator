@@ -80,64 +80,138 @@
 
 $(document).ready(function(){
 
+
 // Your code here...
-    $('.number').click(function() {
-        $('#first-number').text($(this).val())
-    })
-    $('.operator').click(function() {
-        $('#operator').text($(this).val())
-        $('.number').off('click')
-        $('.number').click(function() {
-            $('#second-number').text($(this).val())
-            $(".operator").off('click')
-        })            
-   })
-})
-// now we need to get it to concatenate each number 
 
-   $( ".number" ).on(click(function() {
-    //append the value to the h1 with the id 
-    $('#second-number').text(($(this).attr("value")));
-    console.log();
-   }));
+// variables
+let firstNumber = "";
+let secondNumber = "";
+let operator = "";
+let result = "";
 
-    $( ".operator" ).click(function() {
-    
-    //append the value to the h1 with the id 
-    $('#operator').text(($(this).attr("value")));
-    console.log();
-    
-  });
-  $( ".equal" ).click(function() {
-    
-    //append the value to the h1 with the id 
-    $('#result').text(($(this).attr("value")));
-    console.log();
-   });
-   //we need to clear this out 
-   //we also want it to restart 
+// clear func
 
-//    $( ".clear" ).click(function() {
-//     // alert( "Handler for .click() called." );
-//     //append the value to the h1 with the id 
-//     $('#clear').text(($(this).attr("value")));
-//     console.log();
-//    });
 
-//https://codereview.stackexchange.com/questions/38947/basic-calculator-in-jquery
-equals.on('click', function() {
-    var firstInput = parseFloat(input.attr('name'));
-    var secondInput = parseFloat(input.val());
-    if (equals.hasClass('add')) {
-        input.val(firstInput + secondInput);
-    } else if (equals.hasClass('subtract')) {
-        input.val(firstInput - secondInput);
-    } else if (equals.hasClass('multiply')) {
-        input.val(firstInput * secondInput);
-    } else if (equals.hasClass('divide')) {
-        input.val(firstInput / secondInput);
+const clear = function() {
+    firstNumber = "";
+    secondNumber = "";
+    operator = "";
+    result = "";
+    $('#first-number').empty();
+    $('#operator').empty();
+    $('#second-number').empty();
+    $('#result').empty();
+    // console.log('We did it!');
+}
+
+$('#button-clear').click(clear);
+
+// number func
+
+$('.number').click(function() {
+    if(operator === "") {
+        firstNumber += $(this).val();
+        console.log(firstNumber);
+        $('#first-number').text(firstNumber);
+    } else {
+        secondNumber += $(this).val();
+        console.log(secondNumber);
+        $('#second-number').text(secondNumber);
     }
 });
+
+
+// operator func
+
+$('.operator').click(function() {
+    operator = $(this).text();
+    $('#operator').text(operator);
+});
+
+
+
+
+// calculate func
+
+$('.equal').click(function() {
+    firstNumber = parseInt(firstNumber);
+    secondNumber = parseInt(secondNumber);
+    if (operator === "+") {
+        result = firstNumber + secondNumber;
+    } else if (operator === "&minus;") {
+        result = firstNumber - secondNumber;
+    } else if (operator === "&times;") {
+        result = firstNumber * secondNumber;
+    } else if (operator === "&divide;") {
+        result = firstNumber / secondNumber;
+    } else if (operator === '^') {
+        result = Math.pow(firstNumber, secondNumber);
+    };
+    $('#result').text(result);
+});
+
+});    
+
+// // Your code here...
+//     $('.number').click(function() {
+//         $('#first-number').text($(this).val())
+//     })
+//     $('.operator').click(function() {
+//         $('#operator').text($(this).val())
+//         $('.number').off('click')
+//         $('.number').click(function() {
+//             $('#second-number').text($(this).val())
+//             $(".operator").off('click')
+//         })            
+//    })
+// })
+// // now we need to get it to concatenate each number 
+
+//    $( ".number" ).on(click(function() {
+//     //append the value to the h1 with the id 
+//     $('#second-number').text(($(this).attr("value")));
+//     console.log();
+//    }));
+
+//     $( ".operator" ).click(function() {
+    
+//     //append the value to the h1 with the id 
+//     $('#operator').text(($(this).attr("value")));
+//     console.log();
+    
+//   });
+//   $( ".equal" ).click(function() {
+    
+//     //append the value to the h1 with the id 
+//     $('#result').text(($(this).attr("value")));
+//     console.log();
+//    });
+//    //we need to clear this out 
+//    //we also want it to restart 
+
+// //    $( ".clear" ).click(function() {
+// //     // alert( "Handler for .click() called." );
+// //     //append the value to the h1 with the id 
+// //     $('#clear').text(($(this).attr("value")));
+// //     console.log();
+// //    });
+
+// //https://codereview.stackexchange.com/questions/38947/basic-calculator-in-jquery
+// equals.on('click', function() {
+//     var firstInput = parseFloat(input.attr('name'));
+//     var secondInput = parseFloat(input.val());
+//     if (equals.hasClass('add')) {
+//         input.val(firstInput + secondInput);
+//     } else if (equals.hasClass('subtract')) {
+//         input.val(firstInput - secondInput);
+//     } else if (equals.hasClass('multiply')) {
+//         input.val(firstInput * secondInput);
+//     } else if (equals.hasClass('divide')) {
+//         input.val(firstInput / secondInput);
+//     }
+// });
+
+
 
 
 
