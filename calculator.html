@@ -113,6 +113,11 @@ $('.number').click(function() {
         firstNumber += $(this).val();
         console.log(firstNumber);
         $('#first-number').text(firstNumber);
+    } else if (result !== "") {
+        clear();
+        firstNumber += $(this).val();
+        console.log(firstNumber);
+        $('#first-number').text(firstNumber);
     } else {
         secondNumber += $(this).val();
         console.log(secondNumber);
