@@ -124,8 +124,10 @@ $('.number').click(function() {
 // operator func
 
 $('.operator').click(function() {
-    operator = $(this).text();
-    $('#operator').text(operator);
+    if (firstNumber !== '' && secondNumber === '') {
+        operator = $(this).val();
+        $('#operator').text($(this).text());
+    }
 });
 
 
@@ -134,20 +136,22 @@ $('.operator').click(function() {
 // calculate func
 
 $('.equal').click(function() {
-    firstNumber = parseInt(firstNumber);
-    secondNumber = parseInt(secondNumber);
-    if (operator === "+") {
-        result = firstNumber + secondNumber;
-    } else if (operator === "&minus;") {
-        result = firstNumber - secondNumber;
-    } else if (operator === "&times;") {
-        result = firstNumber * secondNumber;
-    } else if (operator === "&divide;") {
-        result = firstNumber / secondNumber;
-    } else if (operator === '^') {
-        result = Math.pow(firstNumber, secondNumber);
-    };
-    $('#result').text(result);
+    if (secondNumber !== '') {
+        firstNumber = parseFloat(firstNumber);
+        secondNumber = parseFloat(secondNumber);
+        if (operator === "plus") {
+            result = firstNumber + secondNumber;
+        } else if (operator === "minus") {
+            result = firstNumber - secondNumber;
+        } else if (operator === "times") {
+            result = firstNumber * secondNumber;
+        } else if (operator === "divide") {
+            result = firstNumber / secondNumber;
+        } else if (operator === "power") {
+            result = Math.pow(firstNumber, secondNumber);
+        };
+        $('#result').text(result);
+    }
 });
 
 });    
