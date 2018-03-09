@@ -88,7 +88,7 @@ let firstNumber = "";
 let secondNumber = "";
 let operator = "";
 let result = "";
-
+let placeHolder;
 // clear func
 
 
@@ -130,6 +130,13 @@ $('.number').click(function() {
 
 $('.operator').click(function() {
     if (firstNumber !== '' && secondNumber === '') {
+        operator = $(this).val();
+        $('#operator').text($(this).text());
+    } else if (result !== '') {
+        placeHolder = result;
+        clear();
+        firstNumber = placeHolder;
+        $('#first-number').text(firstNumber);
         operator = $(this).val();
         $('#operator').text($(this).text());
     }
